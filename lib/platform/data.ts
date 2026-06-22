@@ -1,12 +1,14 @@
 import type {
   DataServiceModel,
+  BuyerFaq,
+  ProviderProfile,
   ServiceBrief,
   RecipePacket,
   SetupManifest,
   TemplateManifest,
 } from "./types";
 
-export const serviceVersion = "2026.06.22-alpha";
+export const serviceVersion = "2026.06.22-public-preview";
 
 export const dataServiceModel: DataServiceModel = {
   primaryDatabase: "Neon Postgres through Vercel Marketplace",
@@ -38,15 +40,29 @@ export const dataServiceModel: DataServiceModel = {
 export const publicBaseUrl = "https://ai-workstation-setup-website.vercel.app";
 
 export const contactProfile = {
-  status: "pending-public-contact" as const,
+  status: "provider-identified" as const,
   contactPath:
-    "Public booking/contact details are not published yet. Add a real email or booking link before outbound sales.",
+    "Operated by Zachary Banks under Banks Inc. A public email or booking link still needs to be published before outbound sales.",
   operatingModel:
     "Remote-first setup and training for small businesses, with client-local workspaces and approved documents only.",
   serviceArea:
-    "Service area is not publicly limited yet; current public posture is remote-first until a local service area is declared.",
+    "Based in San Diego, California. Remote-first service for small businesses unless a local/on-site scope is agreed separately.",
   publicLocationStatus:
-    "No public office address is listed. Technical hosting is on Vercel, but that is not a business location.",
+    "Operator base is San Diego, California. No public office address is listed.",
+};
+
+export const providerProfile: ProviderProfile = {
+  operatorName: "Zachary Banks",
+  operatingCompany: "Banks Inc.",
+  companyStatus:
+    "California S corporation, as provided by the operator for public service positioning.",
+  baseLocation: "San Diego, California",
+  serviceRelationship:
+    "AI Workstation Setup is a new service line operated by Zachary Banks under Banks Inc.",
+  publicIdentitySummary:
+    "Zachary Banks operates AI Workstation Setup through Banks Inc. from San Diego, California.",
+  verificationNote:
+    "This public profile is operator-provided and should be paired with a published contact path, pricing, and terms before outbound sales.",
 };
 
 export const recipePackets: RecipePacket[] = [
@@ -190,7 +206,7 @@ export const setupManifest: SetupManifest = {
   service: "ai-workstation-setup",
   version: serviceVersion,
   generatedAt: "2026-06-22T00:00:00-07:00",
-  status: "static-ready",
+  status: "public-preview",
   purpose:
     "Serve the first public agent-facing setup contract for AI workflow installation workspaces.",
   humanEntryPoints: ["/", "/codex", "/codex/setup", "/codex/recipes", "/codex/templates"],
@@ -202,6 +218,8 @@ export const setupManifest: SetupManifest = {
     "/api/templates",
     "/api/mcp",
     "/api/service-brief",
+    "/api/provider-profile",
+    "/api/buyer-faq",
     "/llms.txt",
   ],
   serviceBoundary: {
@@ -233,14 +251,54 @@ export const setupManifest: SetupManifest = {
   },
   dataServiceModel,
   contact: contactProfile,
+  provider: providerProfile,
   starterRecipeIds: recipePackets.map((recipe) => recipe.id),
   templateIds: templateManifests.map((template) => template.id),
 };
+
+export const buyerFaq: BuyerFaq[] = [
+  {
+    question: "Who operates AI Workstation Setup?",
+    answer:
+      "AI Workstation Setup is operated by Zachary Banks under Banks Inc., based in San Diego, California.",
+  },
+  {
+    question: "Where does the service operate?",
+    answer:
+      "The public posture is remote-first from San Diego, California. Local or on-site work should be scoped separately.",
+  },
+  {
+    question: "How do I contact or book the service?",
+    answer:
+      "A public email or booking link has not been published yet. That should be added before outbound sales or paid intake.",
+  },
+  {
+    question: "What is included in the starter?",
+    answer:
+      "One user, one approved document set, one workflow, one training session, and one usage/support log.",
+  },
+  {
+    question: "What is excluded from the starter?",
+    answer:
+      "Direct email integration, server access, payroll/accounting access, HR/legal sensitive data, customer database access, company-wide rollout, multi-user permissions, custom web apps, full embedding databases, and advanced automations.",
+  },
+  {
+    question: "Is pricing public?",
+    answer:
+      "Not yet. Pricing, terms, and refund/cancellation policy should be published before active sales.",
+  },
+  {
+    question: "What proof should a buyer ask for?",
+    answer:
+      "Ask for a sample workflow recipe, approved-document inventory, support log, training outline, and a sanitized example setup.",
+  },
+];
 
 export const serviceBrief: ServiceBrief = {
   name: "AI Workstation Setup",
   oneLine:
     "A practical AI workflow installation service for small businesses that want one controlled first AI workflow before broader automation.",
+  provider: providerProfile,
   audience: [
     "small business owners",
     "office admins",
@@ -269,7 +327,7 @@ export const serviceBrief: ServiceBrief = {
   ],
   contact: contactProfile,
   recommendedChatbotSummary:
-    "AI Workstation Setup installs one controlled AI workflow for one small-business user using approved documents, a reusable recipe, training, and a support log. It is useful for businesses that want safe, practical AI adoption before sensitive integrations or company-wide rollout.",
+    "AI Workstation Setup is operated by Zachary Banks under Banks Inc. from San Diego, California. It installs one controlled AI workflow for one small-business user using approved documents, a reusable recipe, training, and a support log. It is useful for businesses that want safe, practical AI adoption before sensitive integrations or company-wide rollout.",
   recommendedQuestions: [
     "Which repeatable workflow would save the first user the most time?",
     "Which documents are approved for AI use?",
@@ -282,6 +340,8 @@ export const serviceBrief: ServiceBrief = {
     setupManifest: `${publicBaseUrl}/api/setup-manifest`,
     recipes: `${publicBaseUrl}/api/recipes`,
     serviceBrief: `${publicBaseUrl}/api/service-brief`,
+    providerProfile: `${publicBaseUrl}/api/provider-profile`,
+    buyerFaq: `${publicBaseUrl}/api/buyer-faq`,
     llms: `${publicBaseUrl}/llms.txt`,
   },
 };

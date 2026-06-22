@@ -9,8 +9,11 @@ required=(
   "app/codex/setup/page.tsx"
   "app/codex/recipes/page.tsx"
   "app/codex/templates/page.tsx"
+  "app/provider/page.tsx"
   "app/api/health/route.ts"
   "app/api/platform/route.ts"
+  "app/api/provider-profile/route.ts"
+  "app/api/buyer-faq/route.ts"
   "app/api/setup-manifest/route.ts"
   "app/api/service-brief/route.ts"
   "app/api/recipes/route.ts"
@@ -47,6 +50,11 @@ fi
 
 if ! grep -q "recommendedChatbotSummary" "$ROOT/lib/platform/data.ts"; then
   echo "platform data missing chatbot service brief" >&2
+  exit 1
+fi
+
+if ! grep -q "Zachary Banks" "$ROOT/lib/platform/data.ts"; then
+  echo "platform data missing public provider identity" >&2
   exit 1
 fi
 

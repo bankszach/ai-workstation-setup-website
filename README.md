@@ -9,6 +9,8 @@ Vercel-ready boundary for Neon Postgres and Vercel Blob.
 The site also exposes chatbot-readable discovery surfaces:
 
 - `/api/service-brief`
+- `/api/provider-profile`
+- `/api/buyer-faq`
 - `/llms.txt`
 - `/api/setup-manifest`
 

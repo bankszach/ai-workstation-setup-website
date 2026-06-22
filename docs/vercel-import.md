@@ -36,8 +36,11 @@ Do not commit `.env` files to this repo.
 - `/codex/setup`
 - `/codex/recipes`
 - `/codex/templates`
+- `/provider`
 - `/api/health`
 - `/api/platform`
+- `/api/provider-profile`
+- `/api/buyer-faq`
 - `/api/setup-manifest`
 - `/api/service-brief`
 - `/api/recipes`

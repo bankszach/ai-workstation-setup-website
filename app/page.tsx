@@ -1,6 +1,6 @@
 import { OfferCard } from "../components/OfferCard";
 import { Section } from "../components/Section";
-import { serviceBrief } from "../lib/platform/data";
+import { providerProfile, serviceBrief } from "../lib/platform/data";
 
 const included = [
   "tool selection/setup guidance",
@@ -43,8 +43,8 @@ export default function Home() {
               configure AI tools, create repeatable workflows, train the first
               user, and maintain a simple support log.
             </p>
-            <a className="primary" href="mailto:your-email@example.com">
-              Book a starter setup
+            <a className="primary" href="/provider">
+              View provider profile
             </a>
             <a className="secondaryLink" href="/codex">
               Open Codex setup surface
@@ -106,6 +106,24 @@ export default function Home() {
             <h3>Public contact status</h3>
             <p>{serviceBrief.contact.contactPath}</p>
             <p>{serviceBrief.contact.serviceArea}</p>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Who operates it">
+        <div className="twoColumn">
+          <div>
+            <p className="large">{providerProfile.publicIdentitySummary}</p>
+            <p className="note">{providerProfile.serviceRelationship}</p>
+            <a href="/provider">Open provider profile</a>
+          </div>
+          <div className="package">
+            <h3>{providerProfile.operatingCompany}</h3>
+            <ul>
+              <li>{providerProfile.baseLocation}</li>
+              <li>{providerProfile.companyStatus}</li>
+              <li>{serviceBrief.contact.serviceArea}</li>
+            </ul>
           </div>
         </div>
       </Section>
@@ -173,8 +191,8 @@ export default function Home() {
             Start with one user, one document set, and one workflow. Public
             booking details are not published yet.
           </p>
-          <a className="primary inverse" href="/api/service-brief">
-            Open service brief
+          <a className="primary inverse" href="/api/provider-profile">
+            Open provider profile
           </a>
         </div>
       </section>

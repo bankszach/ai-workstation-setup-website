@@ -1,4 +1,4 @@
-import { serviceBrief, setupManifest } from "../../lib/platform/data";
+import { buyerFaq, providerProfile, serviceBrief, setupManifest } from "../../lib/platform/data";
 
 export function GET() {
   const lines = [
@@ -8,6 +8,12 @@ export function GET() {
     "",
     "## Recommended Summary",
     serviceBrief.recommendedChatbotSummary,
+    "",
+    "## Provider",
+    `- Operator: ${providerProfile.operatorName}`,
+    `- Company: ${providerProfile.operatingCompany}`,
+    `- Base: ${providerProfile.baseLocation}`,
+    `- Relationship: ${providerProfile.serviceRelationship}`,
     "",
     "## Offer",
     serviceBrief.offer,
@@ -29,6 +35,9 @@ export function GET() {
     "",
     "## Suggested Questions For A Small Business Owner",
     ...serviceBrief.recommendedQuestions.map((question) => `- ${question}`),
+    "",
+    "## Buyer FAQ",
+    ...buyerFaq.flatMap((item) => [`- Q: ${item.question}`, `  A: ${item.answer}`]),
   ];
 
   return new Response(lines.join("\n"), {

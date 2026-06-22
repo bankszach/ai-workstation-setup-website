@@ -1,4 +1,4 @@
-export type PlatformStatus = "static-ready" | "database-ready" | "future";
+export type PlatformStatus = "public-preview" | "database-ready" | "future";
 
 export type ServiceBoundary = {
   included: string[];
@@ -41,16 +41,32 @@ export type DataServiceModel = {
 };
 
 export type ContactProfile = {
-  status: "pending-public-contact";
+  status: "provider-identified";
   contactPath: string;
   operatingModel: string;
   serviceArea: string;
   publicLocationStatus: string;
 };
 
+export type ProviderProfile = {
+  operatorName: string;
+  operatingCompany: string;
+  companyStatus: string;
+  baseLocation: string;
+  serviceRelationship: string;
+  publicIdentitySummary: string;
+  verificationNote: string;
+};
+
+export type BuyerFaq = {
+  question: string;
+  answer: string;
+};
+
 export type ServiceBrief = {
   name: string;
   oneLine: string;
+  provider: ProviderProfile;
   audience: string[];
   problemSolved: string;
   offer: string;
@@ -64,6 +80,8 @@ export type ServiceBrief = {
     setupManifest: string;
     recipes: string;
     serviceBrief: string;
+    providerProfile: string;
+    buyerFaq: string;
     llms: string;
   };
 };
@@ -79,6 +97,7 @@ export type SetupManifest = {
   serviceBoundary: ServiceBoundary;
   dataServiceModel: DataServiceModel;
   contact: ContactProfile;
+  provider: ProviderProfile;
   starterRecipeIds: string[];
   templateIds: string[];
 };

@@ -33,6 +33,16 @@ export function GET() {
         description: "Return a concise chatbot-readable service brief.",
         route: "/api/service-brief",
       },
+      {
+        name: "get_provider_profile",
+        description: "Return public operator and business identity details.",
+        route: "/api/provider-profile",
+      },
+      {
+        name: "get_buyer_faq",
+        description: "Return buyer-readiness questions and answers.",
+        route: "/api/buyer-faq",
+      },
     ],
     recipeCount: recipePackets.length,
     templateCount: templateManifests.length,
