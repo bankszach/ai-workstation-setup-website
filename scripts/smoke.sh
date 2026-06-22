@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+required=(
+  "app/page.tsx"
+  "app/codex/page.tsx"
+  "app/codex/setup/page.tsx"
+  "app/codex/recipes/page.tsx"
+  "app/codex/templates/page.tsx"
+  "app/api/health/route.ts"
+  "app/api/platform/route.ts"
+  "app/api/setup-manifest/route.ts"
+  "app/api/recipes/route.ts"
+  "app/api/templates/route.ts"
+  "app/api/mcp/route.ts"
+  "lib/platform/data.ts"
+  "lib/platform/db.ts"
+  "lib/platform/blob.ts"
+  "docs/vercel-import.md"
+)
+
+for path in "${required[@]}"; do
+  test -f "$ROOT/$path" || {
+    echo "missing required file: $path" >&2
+    exit 1
+  }
+done
+
+if find "$ROOT" -path "$ROOT/.git" -prune -o -name ".env" -print | grep -q .; then
+  echo "project-local .env file found; keep secrets out of this repo" >&2
+  exit 1
+fi
+
+if ! grep -q "Neon Postgres" "$ROOT/lib/platform/data.ts"; then
+  echo "platform data missing Neon Postgres boundary" >&2
+  exit 1
+fi
+
+if ! grep -q "Vercel Blob" "$ROOT/lib/platform/data.ts"; then
+  echo "platform data missing Vercel Blob boundary" >&2
+  exit 1
+fi
+
+echo "ai-workstation-setup-website smoke passed"
