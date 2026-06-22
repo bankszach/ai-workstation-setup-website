@@ -39,7 +39,9 @@ Do not commit `.env` files to this repo.
 - `/api/health`
 - `/api/platform`
 - `/api/setup-manifest`
+- `/api/service-brief`
 - `/api/recipes`
 - `/api/recipes/starter-workspace-install`
 - `/api/templates`
 - `/api/mcp`
+- `/llms.txt`

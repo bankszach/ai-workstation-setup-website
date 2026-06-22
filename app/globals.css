@@ -320,6 +320,12 @@ h1 {
   font-size: 1.22rem;
 }
 
+.note {
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .cta {
   background: var(--accent-dark);
   color: #ffffff;

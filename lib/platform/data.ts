@@ -1,5 +1,6 @@
 import type {
   DataServiceModel,
+  ServiceBrief,
   RecipePacket,
   SetupManifest,
   TemplateManifest,
@@ -32,6 +33,20 @@ export const dataServiceModel: DataServiceModel = {
     "training handouts",
     "template bundles",
   ],
+};
+
+export const publicBaseUrl = "https://ai-workstation-setup-website.vercel.app";
+
+export const contactProfile = {
+  status: "pending-public-contact" as const,
+  contactPath:
+    "Public booking/contact details are not published yet. Add a real email or booking link before outbound sales.",
+  operatingModel:
+    "Remote-first setup and training for small businesses, with client-local workspaces and approved documents only.",
+  serviceArea:
+    "Service area is not publicly limited yet; current public posture is remote-first until a local service area is declared.",
+  publicLocationStatus:
+    "No public office address is listed. Technical hosting is on Vercel, but that is not a business location.",
 };
 
 export const recipePackets: RecipePacket[] = [
@@ -186,6 +201,8 @@ export const setupManifest: SetupManifest = {
     "/api/recipes",
     "/api/templates",
     "/api/mcp",
+    "/api/service-brief",
+    "/llms.txt",
   ],
   serviceBoundary: {
     included: [
@@ -215,8 +232,58 @@ export const setupManifest: SetupManifest = {
     ],
   },
   dataServiceModel,
+  contact: contactProfile,
   starterRecipeIds: recipePackets.map((recipe) => recipe.id),
   templateIds: templateManifests.map((template) => template.id),
+};
+
+export const serviceBrief: ServiceBrief = {
+  name: "AI Workstation Setup",
+  oneLine:
+    "A practical AI workflow installation service for small businesses that want one controlled first AI workflow before broader automation.",
+  audience: [
+    "small business owners",
+    "office admins",
+    "consultants",
+    "insurance agencies",
+    "training teams",
+    "property offices",
+    "service businesses",
+    "nonprofits",
+  ],
+  problemSolved:
+    "Many small businesses want to use AI but do not know how to start safely. The service turns approved documents, one user, and one repeatable workflow into a controlled AI-assisted operating process with human review.",
+  offer:
+    "AI Workstation Starter: one user, one approved document set, one workflow, one training session, and one usage/support log. Sensitive integrations are excluded from the starter.",
+  goodFit: [
+    "a business with repeatable document-heavy admin work",
+    "a team that needs safe first-user AI adoption",
+    "an owner who wants practical setup and training rather than a broad AI transformation project",
+    "a workflow where approved documents, templates, checklists, or SOPs can support the user",
+  ],
+  notFit: [
+    "immediate Gmail, accounting, payroll, HR, legal, server, or customer database integration",
+    "company-wide rollout",
+    "autonomous outbound communication",
+    "custom app development as the first step",
+  ],
+  contact: contactProfile,
+  recommendedChatbotSummary:
+    "AI Workstation Setup installs one controlled AI workflow for one small-business user using approved documents, a reusable recipe, training, and a support log. It is useful for businesses that want safe, practical AI adoption before sensitive integrations or company-wide rollout.",
+  recommendedQuestions: [
+    "Which repeatable workflow would save the first user the most time?",
+    "Which documents are approved for AI use?",
+    "Who reviews outputs before they are sent or used for business decisions?",
+    "Which systems must stay out of scope?",
+    "What output should the first workflow produce?",
+  ],
+  urls: {
+    homepage: publicBaseUrl,
+    setupManifest: `${publicBaseUrl}/api/setup-manifest`,
+    recipes: `${publicBaseUrl}/api/recipes`,
+    serviceBrief: `${publicBaseUrl}/api/service-brief`,
+    llms: `${publicBaseUrl}/llms.txt`,
+  },
 };
 
 export function findRecipe(recipeId: string) {

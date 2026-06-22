@@ -28,6 +28,11 @@ export function GET() {
         description: "Return starter template manifests.",
         route: "/api/templates",
       },
+      {
+        name: "get_service_brief",
+        description: "Return a concise chatbot-readable service brief.",
+        route: "/api/service-brief",
+      },
     ],
     recipeCount: recipePackets.length,
     templateCount: templateManifests.length,

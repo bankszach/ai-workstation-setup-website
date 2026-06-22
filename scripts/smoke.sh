@@ -12,9 +12,11 @@ required=(
   "app/api/health/route.ts"
   "app/api/platform/route.ts"
   "app/api/setup-manifest/route.ts"
+  "app/api/service-brief/route.ts"
   "app/api/recipes/route.ts"
   "app/api/templates/route.ts"
   "app/api/mcp/route.ts"
+  "app/llms.txt/route.ts"
   "lib/platform/data.ts"
   "lib/platform/db.ts"
   "lib/platform/blob.ts"
@@ -40,6 +42,11 @@ fi
 
 if ! grep -q "Vercel Blob" "$ROOT/lib/platform/data.ts"; then
   echo "platform data missing Vercel Blob boundary" >&2
+  exit 1
+fi
+
+if ! grep -q "recommendedChatbotSummary" "$ROOT/lib/platform/data.ts"; then
+  echo "platform data missing chatbot service brief" >&2
   exit 1
 fi
 

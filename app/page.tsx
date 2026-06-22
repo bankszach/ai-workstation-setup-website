@@ -1,5 +1,6 @@
 import { OfferCard } from "../components/OfferCard";
 import { Section } from "../components/Section";
+import { serviceBrief } from "../lib/platform/data";
 
 const included = [
   "tool selection/setup guidance",
@@ -78,13 +79,33 @@ export default function Home() {
             This project is the first implementation of the agent-first service
             pattern: human-readable setup pages, machine-readable setup
             manifests, recipe packets, template metadata, API routes, and a
-            Vercel-ready path to Neon Postgres and Blob storage.
+            Vercel-ready path to Neon Postgres and Blob storage. Generic chat
+            assistants can inspect the packet routes and summarize the service
+            without private context.
           </p>
           <div className="verticalList">
+            <a href="/api/service-brief">/api/service-brief</a>
+            <a href="/llms.txt">/llms.txt</a>
             <a href="/api/setup-manifest">/api/setup-manifest</a>
             <a href="/api/recipes">/api/recipes</a>
-            <a href="/api/templates">/api/templates</a>
-            <a href="/api/platform">/api/platform</a>
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Share with ChatGPT, Claude, or Grok">
+        <div className="twoColumn">
+          <div>
+            <p className="large">{serviceBrief.recommendedChatbotSummary}</p>
+            <p className="note">
+              Baseline prompt: review this website and explain what the company
+              offers, who it is for, what problem it solves, and whether it is
+              useful for a small business owner.
+            </p>
+          </div>
+          <div className="package">
+            <h3>Public contact status</h3>
+            <p>{serviceBrief.contact.contactPath}</p>
+            <p>{serviceBrief.contact.serviceArea}</p>
           </div>
         </div>
       </Section>
@@ -148,9 +169,12 @@ export default function Home() {
       <section className="cta">
         <div className="wrap">
           <h2>Book a starter setup</h2>
-          <p>Start with one user, one document set, and one workflow.</p>
-          <a className="primary inverse" href="mailto:your-email@example.com">
-            your-email@example.com
+          <p>
+            Start with one user, one document set, and one workflow. Public
+            booking details are not published yet.
+          </p>
+          <a className="primary inverse" href="/api/service-brief">
+            Open service brief
           </a>
         </div>
       </section>

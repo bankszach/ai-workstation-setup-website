@@ -40,6 +40,34 @@ export type DataServiceModel = {
   blobArtifacts: string[];
 };
 
+export type ContactProfile = {
+  status: "pending-public-contact";
+  contactPath: string;
+  operatingModel: string;
+  serviceArea: string;
+  publicLocationStatus: string;
+};
+
+export type ServiceBrief = {
+  name: string;
+  oneLine: string;
+  audience: string[];
+  problemSolved: string;
+  offer: string;
+  goodFit: string[];
+  notFit: string[];
+  contact: ContactProfile;
+  recommendedChatbotSummary: string;
+  recommendedQuestions: string[];
+  urls: {
+    homepage: string;
+    setupManifest: string;
+    recipes: string;
+    serviceBrief: string;
+    llms: string;
+  };
+};
+
 export type SetupManifest = {
   service: string;
   version: string;
@@ -50,6 +78,7 @@ export type SetupManifest = {
   machineEntryPoints: string[];
   serviceBoundary: ServiceBoundary;
   dataServiceModel: DataServiceModel;
+  contact: ContactProfile;
   starterRecipeIds: string[];
   templateIds: string[];
 };
