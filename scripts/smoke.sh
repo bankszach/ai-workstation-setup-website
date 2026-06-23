@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 required=(
   "app/page.tsx"
+  "app/brief/page.tsx"
   "app/codex/page.tsx"
   "app/codex/setup/page.tsx"
   "app/codex/recipes/page.tsx"
@@ -86,6 +87,16 @@ fi
 
 if ! grep -q "https://claude.ai/" "$ROOT/app/page.tsx"; then
   echo "homepage missing Claude launch link" >&2
+  exit 1
+fi
+
+if ! grep -q "serviceBrief.urls.brief" "$ROOT/app/page.tsx"; then
+  echo "homepage prompt missing normal HTML brief route" >&2
+  exit 1
+fi
+
+if ! grep -q "not a physical computer build" "$ROOT/app/brief/page.tsx"; then
+  echo "brief page missing hardware-workstation disambiguation" >&2
   exit 1
 fi
 

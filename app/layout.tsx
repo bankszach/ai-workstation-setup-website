@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ai-workstation-setup-website.vercel.app"),
   title: "AI Workstation Setup",
   description:
-    "Copy one prompt, open ChatGPT, Claude, Gemini, Grok, Perplexity, or Copilot, and inspect AI Workstation Setup through an AI chat tool.",
+    "AI workflow installation for one controlled small-business workflow. Not a physical computer or GPU workstation build service.",
   authors: [{ name: "Zachary Banks" }],
   creator: "Zachary Banks",
   publisher: "Banks Inc.",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Workstation Setup",
     description:
-      "A practical AI workflow installation service for one controlled first workflow.",
+      "AI workflow installation for one controlled small-business workflow. Not a physical computer or GPU workstation build service.",
     images: [
       {
         url: "/agent-assets/ai-workstation-chat-card.png",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Workstation Setup",
     description:
-      "A practical AI workflow installation service for one controlled first workflow.",
+      "AI workflow installation for one controlled small-business workflow. Not a physical computer or GPU workstation build service.",
     images: ["/agent-assets/ai-workstation-chat-card.png"],
   },
 };

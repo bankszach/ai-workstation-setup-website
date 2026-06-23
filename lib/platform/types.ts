@@ -86,6 +86,7 @@ export type ServiceBrief = {
   recommendedQuestions: string[];
   urls: {
     homepage: string;
+    brief: string;
     setupManifest: string;
     recipes: string;
     serviceBrief: string;

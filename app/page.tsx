@@ -6,12 +6,17 @@ const launchPrompt = `Please inspect this AI-first service website for me.
 Start here:
 ${serviceBrief.urls.homepage}
 
-If you can browse additional routes, also read:
+If you can browse a normal web page, read:
+${serviceBrief.urls.brief}
+
+If you can browse additional machine-readable routes, also read:
 ${serviceBrief.urls.serviceBrief}
 ${serviceBrief.urls.providerProfile}
 ${serviceBrief.urls.buyerFaq}
 ${serviceBrief.urls.setupManifest}
 ${serviceBrief.urls.llms}
+
+Important: this is not a physical computer build, GPU workstation sales, or local AI hardware setup service.
 
 Tell me what the company offers, who operates it, where it is based, who it is for, what problem it solves, whether it seems useful for a small business owner, and what questions a buyer should ask before booking.`;
 
@@ -61,6 +66,7 @@ const platforms: ChatPlatform[] = [
 ];
 
 const packetRoutes = [
+  serviceBrief.urls.brief,
   serviceBrief.urls.serviceBrief,
   serviceBrief.urls.providerProfile,
   serviceBrief.urls.buyerFaq,
@@ -68,9 +74,47 @@ const packetRoutes = [
   serviceBrief.urls.llms,
 ];
 
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${serviceBrief.urls.homepage}/#organization`,
+      name: providerProfile.operatingCompany,
+      founder: providerProfile.operatorName,
+      url: serviceBrief.urls.homepage,
+      location: {
+        "@type": "Place",
+        name: providerProfile.baseLocation,
+      },
+    },
+    {
+      "@type": "Service",
+      "@id": `${serviceBrief.urls.homepage}/#service`,
+      name: serviceBrief.name,
+      serviceType: "AI workflow installation",
+      provider: {
+        "@id": `${serviceBrief.urls.homepage}/#organization`,
+      },
+      areaServed: "United States",
+      image: `${serviceBrief.urls.homepage}/agent-assets/ai-workstation-chat-card.png`,
+      description:
+        "A practical AI workflow installation service for small businesses: one user, one approved document set, one workflow, one training session, and one usage/support log. This is not a physical computer build, GPU workstation sales, local AI server build, or hardware sourcing service.",
+      audience: {
+        "@type": "BusinessAudience",
+        audienceType: "Small business owners and office operators",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="launcherPage">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <section className="launcherHero">
         <div className="wrap launcherShell">
           <div className="launcherIntro">
@@ -80,6 +124,8 @@ export default function Home() {
               This website is designed to be consumed through a chat tool first.
               Copy the prompt, choose ChatGPT, Claude, Gemini, Grok, Perplexity,
               or Copilot, then let the model inspect the public packet routes.
+              The service installs one controlled AI workflow; it does not sell
+              or build physical AI workstations.
             </p>
             <div className="identityPanel">
               <strong>{providerProfile.operatingCompany}</strong>

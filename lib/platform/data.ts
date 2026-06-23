@@ -235,7 +235,7 @@ export const setupManifest: SetupManifest = {
   status: "public-preview",
   purpose:
     "Serve the first public agent-facing setup contract for AI workflow installation workspaces.",
-  humanEntryPoints: ["/", "/codex", "/codex/setup", "/codex/recipes", "/codex/templates"],
+  humanEntryPoints: ["/", "/brief", "/codex", "/codex/setup", "/codex/recipes", "/codex/templates"],
   machineEntryPoints: [
     "/api/health",
     "/api/platform",
@@ -323,7 +323,7 @@ export const buyerFaq: BuyerFaq[] = [
 export const serviceBrief: ServiceBrief = {
   name: "AI Workstation Setup",
   oneLine:
-    "A practical AI workflow installation service for small businesses that want one controlled first AI workflow before broader automation.",
+    "A practical AI workflow installation service for small businesses that want one controlled first AI workflow before broader automation; it is not a computer hardware build service.",
   provider: providerProfile,
   audience: [
     "small business owners",
@@ -346,6 +346,7 @@ export const serviceBrief: ServiceBrief = {
     "a workflow where approved documents, templates, checklists, or SOPs can support the user",
   ],
   notFit: [
+    "physical computer builds, GPU workstation sales, local model server builds, or hardware sourcing",
     "immediate Gmail, accounting, payroll, HR, legal, server, or customer database integration",
     "company-wide rollout",
     "autonomous outbound communication",
@@ -353,7 +354,7 @@ export const serviceBrief: ServiceBrief = {
   ],
   contact: contactProfile,
   recommendedChatbotSummary:
-    "AI Workstation Setup is operated by Zachary Banks under Banks Inc. from San Diego, California. It installs one controlled AI workflow for one small-business user using approved documents, a reusable recipe, training, and a support log. It is useful for businesses that want safe, practical AI adoption before sensitive integrations or company-wide rollout.",
+    "AI Workstation Setup is operated by Zachary Banks under Banks Inc. from San Diego, California. It installs one controlled AI workflow for one small-business user using approved documents, a reusable recipe, training, and a support log. It is not a physical computer, GPU workstation, or local AI hardware build service. It is useful for businesses that want safe, practical AI adoption before sensitive integrations or company-wide rollout.",
   recommendedQuestions: [
     "Which repeatable workflow would save the first user the most time?",
     "Which documents are approved for AI use?",
@@ -363,6 +364,7 @@ export const serviceBrief: ServiceBrief = {
   ],
   urls: {
     homepage: publicBaseUrl,
+    brief: `${publicBaseUrl}/brief`,
     setupManifest: `${publicBaseUrl}/api/setup-manifest`,
     recipes: `${publicBaseUrl}/api/recipes`,
     serviceBrief: `${publicBaseUrl}/api/service-brief`,
