@@ -1,5 +1,18 @@
 import { providerProfile, serviceBrief, setupManifest } from "../../lib/platform/data";
 
+const previewImages = [
+  {
+    src: "/agent-assets/ai-workstation-chat-card.png",
+    alt: "AI Workstation Setup card that says Copy the prompt. Open your AI.",
+    caption: "AI-first launch card",
+  },
+  {
+    src: "/agent-assets/ai-workstation-packet-map.png",
+    alt: "Route map showing public agent packet endpoints for AI Workstation Setup.",
+    caption: "Public packet route map",
+  },
+];
+
 export default function BriefPage() {
   return (
     <main className="briefPage">
@@ -62,6 +75,24 @@ export default function BriefPage() {
               ))}
             </ul>
           </article>
+        </div>
+      </section>
+
+      <section className="briefVisuals" aria-label="Service preview images">
+        <div className="briefWrap">
+          <h2>Service Preview Images</h2>
+          <p>
+            These images summarize the AI-first launch surface and the public packet
+            route model.
+          </p>
+          <div className="briefImageGrid">
+            {previewImages.map((image) => (
+              <figure key={image.src}>
+                <img src={image.src} alt={image.alt} width="1200" height="630" />
+                <figcaption>{image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
     </main>

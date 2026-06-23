@@ -100,6 +100,16 @@ if ! grep -q "not a physical computer build" "$ROOT/app/brief/page.tsx"; then
   exit 1
 fi
 
+if ! grep -q "ai-workstation-chat-card.png" "$ROOT/app/brief/page.tsx"; then
+  echo "brief page missing service preview image" >&2
+  exit 1
+fi
+
+if ! grep -q "ai-workstation-packet-map.png" "$ROOT/app/brief/page.tsx"; then
+  echo "brief page missing packet map image" >&2
+  exit 1
+fi
+
 if ! grep -q "visualAssets" "$ROOT/lib/platform/data.ts"; then
   echo "platform data missing visual asset packet" >&2
   exit 1

@@ -10,7 +10,7 @@
     <text x="132" y="342">/api/provider-profile</text>
     <text x="132" y="412">/api/buyer-faq</text>
     <text x="132" y="482">/api/setup-manifest</text>
-    <text x="654" y="272">/api/visual-assets</text>
+    <text x="654" y="272">/api/platform</text>
     <text x="654" y="342">/api/recipes</text>
     <text x="654" y="412">/api/templates</text>
     <text x="654" y="482">/llms.txt</text>
