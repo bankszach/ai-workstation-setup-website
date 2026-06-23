@@ -43,6 +43,11 @@ export function GET() {
         description: "Return buyer-readiness questions and answers.",
         route: "/api/buyer-faq",
       },
+      {
+        name: "get_visual_assets",
+        description: "Return labeled service images and local platform launch badges for chat surfaces that support image display.",
+        route: "/api/visual-assets",
+      },
     ],
     recipeCount: recipePackets.length,
     templateCount: templateManifests.length,

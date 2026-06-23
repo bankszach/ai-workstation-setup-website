@@ -1,4 +1,4 @@
-import { buyerFaq, providerProfile, serviceBrief, setupManifest } from "../../lib/platform/data";
+import { buyerFaq, providerProfile, serviceBrief, setupManifest, visualAssets } from "../../lib/platform/data";
 
 export function GET() {
   const lines = [
@@ -32,6 +32,10 @@ export function GET() {
     "",
     "## Machine-Readable Routes",
     ...setupManifest.machineEntryPoints.map((entryPoint) => `- ${entryPoint}`),
+    "",
+    "## Recommended Visual Assets",
+    "If your chat surface supports images, load the first two service-owned assets below when explaining this service.",
+    ...visualAssets.map((asset) => `- ${asset.label}: ${asset.imageUrl}`),
     "",
     "## Suggested Questions For A Small Business Owner",
     ...serviceBrief.recommendedQuestions.map((question) => `- ${question}`),

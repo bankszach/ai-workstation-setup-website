@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AI Workstation Setup chat launch card</title>
+  <desc id="desc">A branded card instructing users to copy the service prompt and open an AI chat tool.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07110d"/>
+      <stop offset="0.58" stop-color="#12392f"/>
+      <stop offset="1" stop-color="#0b1511"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7d98f"/>
+      <stop offset="1" stop-color="#b88428"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <path d="M0 486h1200v144H0z" fill="#f7f4ea"/>
+  <rect x="72" y="72" width="1056" height="394" rx="18" fill="#0b1511" opacity=".56" stroke="#d8dfd9" stroke-opacity=".16"/>
+  <text x="96" y="140" fill="#f7d98f" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" letter-spacing="4">AI-FIRST SERVICE SURFACE</text>
+  <text x="96" y="230" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">Copy the prompt.</text>
+  <text x="96" y="314" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">Open your AI.</text>
+  <text x="96" y="376" fill="#d7e5dc" font-family="Arial, Helvetica, sans-serif" font-size="28">Ask ChatGPT, Claude, Gemini, Grok, Perplexity, or Copilot</text>
+  <text x="96" y="416" fill="#d7e5dc" font-family="Arial, Helvetica, sans-serif" font-size="28">to inspect the public service packet routes.</text>
+  <rect x="780" y="126" width="268" height="252" rx="16" fill="#f7f4ea"/>
+  <rect x="812" y="158" width="204" height="18" rx="9" fill="url(#gold)"/>
+  <rect x="812" y="210" width="204" height="36" rx="8" fill="#d8dfd9"/>
+  <rect x="812" y="266" width="156" height="36" rx="8" fill="#d8dfd9"/>
+  <rect x="812" y="322" width="184" height="36" rx="8" fill="#d8dfd9"/>
+  <text x="96" y="558" fill="#17211b" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">AI Workstation Setup</text>
+  <text x="96" y="596" fill="#5d6a61" font-family="Arial, Helvetica, sans-serif" font-size="22">Operated by Zachary Banks under Banks Inc. from San Diego, California.</text>
+</svg>

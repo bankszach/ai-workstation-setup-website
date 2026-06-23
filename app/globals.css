@@ -207,15 +207,19 @@ a {
 
 .platformMark {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--platform-accent) 72%, #ffffff);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--platform-accent) 60%, #ffffff);
   border-radius: 8px;
   background: color-mix(in srgb, var(--platform-accent) 22%, #08100d);
-  color: #ffffff;
-  font-weight: 950;
-  letter-spacing: 0.02em;
+}
+
+.platformMark img {
+  width: 46px;
+  height: 46px;
+  border-radius: 7px;
 }
 
 .platformCard strong,
@@ -314,6 +318,12 @@ a {
   margin: 16px 0 0;
   color: #93a59c;
   line-height: 1.55;
+}
+
+.routeStrip .sourceNote {
+  margin-top: 8px;
+  color: #708279;
+  font-size: 0.86rem;
 }
 
 .hero {

@@ -1,12 +1,14 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export type ChatPlatform = {
   name: string;
-  mark: string;
   href: string;
+  imageSrc: string;
+  imageAlt: string;
   accent: string;
   instruction: string;
 };
@@ -31,7 +33,7 @@ export function CopySurface({ prompt, platforms }: CopySurfaceProps) {
 
   async function copyPrompt() {
     try {
-      await navigator.clipboard.writeText(prompt);
+      await writePromptToClipboard(prompt);
       setCopied(true);
       setCopyError(false);
       if (timeoutRef.current !== null) {
@@ -74,8 +76,14 @@ export function CopySurface({ prompt, platforms }: CopySurfaceProps) {
             style={{ "--platform-accent": platform.accent } as CSSProperties}
             target="_blank"
           >
-            <span className="platformMark" aria-hidden="true">
-              {platform.mark}
+            <span className="platformMark">
+              <Image
+                src={platform.imageSrc}
+                alt={platform.imageAlt}
+                width={46}
+                height={46}
+                unoptimized
+              />
             </span>
             <span>
               <strong>{platform.name}</strong>
@@ -87,4 +95,29 @@ export function CopySurface({ prompt, platforms }: CopySurfaceProps) {
       </div>
     </div>
   );
+}
+
+async function writePromptToClipboard(prompt: string) {
+  try {
+    await navigator.clipboard.writeText(prompt);
+    return;
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = prompt;
+    textarea.setAttribute("readonly", "true");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    textarea.style.top = "0";
+    document.body.append(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+
+    const copied = document.execCommand("copy");
+    textarea.remove();
+
+    if (!copied) {
+      throw new Error("copy failed");
+    }
+  }
 }

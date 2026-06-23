@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AI Workstation Setup packet map</title>
+  <desc id="desc">A visual map of the agent-readable routes for the AI Workstation Setup website.</desc>
+  <rect width="1200" height="630" fill="#f8f7f2"/>
+  <rect x="72" y="70" width="1056" height="490" rx="20" fill="#ffffff" stroke="#d8dfd9"/>
+  <text x="106" y="134" fill="#17211b" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="900">Agent packet routes</text>
+  <text x="106" y="174" fill="#5d6a61" font-family="Arial, Helvetica, sans-serif" font-size="24">Use these public endpoints to evaluate the service before a human sales conversation.</text>
+  <g fill="#1e6957" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">
+    <text x="132" y="272">/api/service-brief</text>
+    <text x="132" y="342">/api/provider-profile</text>
+    <text x="132" y="412">/api/buyer-faq</text>
+    <text x="132" y="482">/api/setup-manifest</text>
+    <text x="654" y="272">/api/visual-assets</text>
+    <text x="654" y="342">/api/recipes</text>
+    <text x="654" y="412">/api/templates</text>
+    <text x="654" y="482">/llms.txt</text>
+  </g>
+  <g stroke="#c89b3c" stroke-width="4" stroke-linecap="round">
+    <path d="M100 238h430"/>
+    <path d="M622 238h430"/>
+    <path d="M100 308h430"/>
+    <path d="M622 308h430"/>
+    <path d="M100 378h430"/>
+    <path d="M622 378h430"/>
+    <path d="M100 448h430"/>
+    <path d="M622 448h430"/>
+  </g>
+  <text x="106" y="530" fill="#17211b" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Starter boundary: one user, one approved document set, one workflow, one training session, one log.</text>
+</svg>

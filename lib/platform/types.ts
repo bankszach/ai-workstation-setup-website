@@ -63,6 +63,28 @@ export type BuyerFaq = {
   answer: string;
 };
 
+export type VisualAsset = {
+  id: string;
+  label: string;
+  type: "service-brand-card" | "service-packet-map" | "platform-launch-badge";
+  imageUrl: string;
+  alt: string;
+  recommendedUse: string;
+  markdown: string;
+  source: string;
+  rightsNote: string;
+};
+
+export type PlatformLaunchAsset = {
+  name: string;
+  href: string;
+  badgeUrl: string;
+  badgeAlt: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  brandUseNote: string;
+};
+
 export type ServiceBrief = {
   name: string;
   oneLine: string;
@@ -82,6 +104,7 @@ export type ServiceBrief = {
     serviceBrief: string;
     providerProfile: string;
     buyerFaq: string;
+    visualAssets: string;
     llms: string;
   };
 };

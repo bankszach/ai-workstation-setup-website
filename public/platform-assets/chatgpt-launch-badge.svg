@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ChatGPT launch badge</title>
+  <desc id="desc">A local AI Workstation Setup launch badge for opening ChatGPT. This is not an official ChatGPT logo.</desc>
+  <rect width="256" height="256" rx="36" fill="#07110d"/>
+  <rect x="20" y="20" width="216" height="216" rx="28" fill="#0e1c17" stroke="#22c55e" stroke-width="4"/>
+  <text x="128" y="145" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">CG</text>
+  <circle cx="128" cy="178" r="6" fill="#ffffff" opacity=".74"/>
+</svg>

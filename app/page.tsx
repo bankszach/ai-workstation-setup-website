@@ -1,5 +1,5 @@
 import { CopySurface, type ChatPlatform } from "../components/CopySurface";
-import { providerProfile, serviceBrief } from "../lib/platform/data";
+import { platformLaunchAssets, providerProfile, serviceBrief } from "../lib/platform/data";
 
 const launchPrompt = `Please inspect this AI-first service website for me.
 
@@ -11,50 +11,60 @@ ${serviceBrief.urls.serviceBrief}
 ${serviceBrief.urls.providerProfile}
 ${serviceBrief.urls.buyerFaq}
 ${serviceBrief.urls.setupManifest}
+${serviceBrief.urls.visualAssets}
 ${serviceBrief.urls.llms}
 
-Tell me what the company offers, who operates it, where it is based, who it is for, what problem it solves, whether it seems useful for a small business owner, and what questions a buyer should ask before booking.`;
+If your chat surface supports images, load the labeled images from:
+${serviceBrief.urls.visualAssets}
+
+Tell me what the company offers, who operates it, where it is based, who it is for, what problem it solves, whether it seems useful for a small business owner, what the visual assets communicate, and what questions a buyer should ask before booking.`;
 
 const platforms: ChatPlatform[] = [
   {
     name: "ChatGPT",
-    mark: "CG",
     href: "https://chatgpt.com/",
+    imageSrc: "/platform-assets/chatgpt-launch-badge.svg",
+    imageAlt: "Local launch badge for opening ChatGPT",
     accent: "#22c55e",
     instruction: "Paste the prompt into a new chat.",
   },
   {
     name: "Claude",
-    mark: "CL",
     href: "https://claude.ai/",
+    imageSrc: "/platform-assets/claude-launch-badge.svg",
+    imageAlt: "Local launch badge for opening Claude",
     accent: "#d97745",
     instruction: "Open Claude and ask it to inspect the links.",
   },
   {
     name: "Gemini",
-    mark: "GE",
     href: "https://gemini.google.com/app",
+    imageSrc: "/platform-assets/gemini-launch-badge.svg",
+    imageAlt: "Local launch badge for opening Gemini",
     accent: "#7c8cff",
     instruction: "Paste the prompt and let Gemini browse.",
   },
   {
     name: "Grok",
-    mark: "GX",
     href: "https://grok.com/",
+    imageSrc: "/platform-assets/grok-launch-badge.svg",
+    imageAlt: "Local launch badge for opening Grok",
     accent: "#e5e7eb",
     instruction: "Open Grok with the copied prompt.",
   },
   {
     name: "Perplexity",
-    mark: "PX",
     href: "https://www.perplexity.ai/",
+    imageSrc: "/platform-assets/perplexity-launch-badge.svg",
+    imageAlt: "Local launch badge for opening Perplexity",
     accent: "#20c7b6",
     instruction: "Use it for source-backed inspection.",
   },
   {
     name: "Copilot",
-    mark: "CP",
     href: "https://copilot.microsoft.com/",
+    imageSrc: "/platform-assets/copilot-launch-badge.svg",
+    imageAlt: "Local launch badge for opening Copilot",
     accent: "#38bdf8",
     instruction: "Paste the prompt into Copilot chat.",
   },
@@ -65,8 +75,11 @@ const packetRoutes = [
   serviceBrief.urls.providerProfile,
   serviceBrief.urls.buyerFaq,
   serviceBrief.urls.setupManifest,
+  serviceBrief.urls.visualAssets,
   serviceBrief.urls.llms,
 ];
+
+const platformBrandSources = platformLaunchAssets.map((platform) => platform.sourceLabel);
 
 export default function Home() {
   return (
@@ -122,8 +135,12 @@ export default function Home() {
             ))}
           </div>
           <p>
-            Independent launch links only. No affiliation, endorsement, reseller status, or
-            partnership with the listed AI platforms is implied.
+            Independent launch links only. Local badge images are navigation aids, not official
+            vendor logos. No affiliation, endorsement, reseller status, or partnership with the
+            listed AI platforms is implied.
+          </p>
+          <p className="sourceNote">
+            Brand-source references reviewed: {platformBrandSources.join(", ")}.
           </p>
         </div>
       </section>

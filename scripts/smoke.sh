@@ -15,6 +15,7 @@ required=(
   "app/api/platform/route.ts"
   "app/api/provider-profile/route.ts"
   "app/api/buyer-faq/route.ts"
+  "app/api/visual-assets/route.ts"
   "app/api/setup-manifest/route.ts"
   "app/api/service-brief/route.ts"
   "app/api/recipes/route.ts"
@@ -24,6 +25,14 @@ required=(
   "lib/platform/data.ts"
   "lib/platform/db.ts"
   "lib/platform/blob.ts"
+  "public/agent-assets/ai-workstation-chat-card.svg"
+  "public/agent-assets/ai-workstation-packet-map.svg"
+  "public/platform-assets/chatgpt-launch-badge.svg"
+  "public/platform-assets/claude-launch-badge.svg"
+  "public/platform-assets/gemini-launch-badge.svg"
+  "public/platform-assets/grok-launch-badge.svg"
+  "public/platform-assets/perplexity-launch-badge.svg"
+  "public/platform-assets/copilot-launch-badge.svg"
   "docs/vercel-import.md"
 )
 
@@ -81,6 +90,16 @@ fi
 
 if ! grep -q "https://claude.ai/" "$ROOT/app/page.tsx"; then
   echo "homepage missing Claude launch link" >&2
+  exit 1
+fi
+
+if ! grep -q "visualAssets" "$ROOT/lib/platform/data.ts"; then
+  echo "platform data missing visual asset packet" >&2
+  exit 1
+fi
+
+if ! grep -q "get_visual_assets" "$ROOT/app/api/mcp/route.ts"; then
+  echo "mcp route missing visual asset discovery" >&2
   exit 1
 fi
 
