@@ -165,6 +165,14 @@ export default function Home() {
               <strong>{providerProfile.operatingCompany}</strong>
               <span>{providerProfile.publicIdentitySummary}</span>
             </div>
+            <a
+              className="humanJump"
+              href="#chat-handoff"
+              aria-label="Humans click here: copy the prompt and open your chat tool"
+            >
+              Humans click here
+              <span>Copy the prompt and open your chat tool</span>
+            </a>
           </div>
 
           <div className="trustPanel" aria-label="Fast trust signals">
@@ -209,7 +217,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="handoffSection" aria-label="Optional chat handoff prompt">
+      <section
+        className="handoffSection"
+        id="chat-handoff"
+        aria-label="Optional chat handoff prompt"
+      >
         <div className="wrap handoffGrid">
           <div>
             <p className="systemLabel light">Optional handoff</p>
