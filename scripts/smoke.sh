@@ -64,13 +64,23 @@ if ! grep -q "providerProfile.publicIdentitySummary" "$ROOT/app/page.tsx"; then
   exit 1
 fi
 
-if ! grep -q "AI-first website for LLM chat tools" "$ROOT/app/page.tsx"; then
+if ! grep -q "Copy the prompt. Open your AI." "$ROOT/app/page.tsx"; then
   echo "homepage missing AI-first positioning" >&2
   exit 1
 fi
 
 if ! grep -q "navigator.clipboard.writeText" "$ROOT/components/CopySurface.tsx"; then
   echo "copy surface missing clipboard behavior" >&2
+  exit 1
+fi
+
+if ! grep -q "https://chatgpt.com/" "$ROOT/app/page.tsx"; then
+  echo "homepage missing ChatGPT launch link" >&2
+  exit 1
+fi
+
+if ! grep -q "https://claude.ai/" "$ROOT/app/page.tsx"; then
+  echo "homepage missing Claude launch link" >&2
   exit 1
 fi
 

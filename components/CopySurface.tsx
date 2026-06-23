@@ -1,19 +1,23 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 
-type CopyItem = {
-  label: string;
-  helper: string;
-  value: string;
+export type ChatPlatform = {
+  name: string;
+  mark: string;
+  href: string;
+  accent: string;
+  instruction: string;
 };
 
 type CopySurfaceProps = {
-  items: CopyItem[];
+  prompt: string;
+  platforms: ChatPlatform[];
 };
 
-export function CopySurface({ items }: CopySurfaceProps) {
-  const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+export function CopySurface({ prompt, platforms }: CopySurfaceProps) {
+  const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const timeoutRef = useRef<number | null>(null);
 
@@ -25,46 +29,62 @@ export function CopySurface({ items }: CopySurfaceProps) {
     };
   }, []);
 
-  async function copyValue(item: CopyItem) {
+  async function copyPrompt() {
     try {
-      await navigator.clipboard.writeText(item.value);
-      setCopiedLabel(item.label);
+      await navigator.clipboard.writeText(prompt);
+      setCopied(true);
       setCopyError(false);
       if (timeoutRef.current !== null) {
         window.clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = window.setTimeout(() => setCopiedLabel(null), 1800);
+      timeoutRef.current = window.setTimeout(() => setCopied(false), 2200);
     } catch {
-      setCopiedLabel(null);
+      setCopied(false);
       setCopyError(true);
     }
   }
 
   return (
-    <div className="copySurface" aria-label="Copy prompts for AI chat tools">
-      <div className="copyHeader">
-        <span>AI Chat Intake</span>
-        <strong>copy, paste, ask</strong>
+    <div className="promptLauncher" aria-label="Copy prompt and open an AI chat platform">
+      <div className="promptConsole">
+        <div className="consoleTop">
+          <span>Prompt to paste</span>
+          <strong>{copied ? "Ready for chat" : "Step 1"}</strong>
+        </div>
+        <pre>{prompt}</pre>
+        <div className="consoleActions">
+          <button type="button" onClick={copyPrompt}>
+            {copied ? "Prompt copied" : "Copy prompt"}
+          </button>
+          <p aria-live="polite">
+            {copied && "Now open a platform and paste."}
+            {copyError && "Copy failed. Select the prompt text and copy it manually."}
+            {!copied && !copyError && "Copy once, then choose your favorite AI chat tool."}
+          </p>
+        </div>
       </div>
-      <div className="copyList">
-        {items.map((item) => (
-          <article className="copyItem" key={item.label}>
-            <div>
-              <h3>{item.label}</h3>
-              <p>{item.helper}</p>
-            </div>
-            <pre>{item.value}</pre>
-            <button type="button" onClick={() => copyValue(item)}>
-              {copiedLabel === item.label ? "Copied" : "Copy"}
-            </button>
-          </article>
+
+      <div className="platformDock">
+        {platforms.map((platform) => (
+          <a
+            className="platformCard"
+            href={platform.href}
+            key={platform.name}
+            rel="noreferrer"
+            style={{ "--platform-accent": platform.accent } as CSSProperties}
+            target="_blank"
+          >
+            <span className="platformMark" aria-hidden="true">
+              {platform.mark}
+            </span>
+            <span>
+              <strong>{platform.name}</strong>
+              <small>{platform.instruction}</small>
+            </span>
+            <em>Open</em>
+          </a>
         ))}
       </div>
-      <p className="copyStatus" aria-live="polite">
-        {copiedLabel && `${copiedLabel} copied.`}
-        {copyError && "Copy failed. Select the text and copy it manually."}
-        {!copiedLabel && !copyError && "Choose a prompt to copy."}
-      </p>
     </div>
   );
 }

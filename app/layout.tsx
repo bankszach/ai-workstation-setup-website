@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "AI Workstation Setup",
   description:
-    "AI-first website for ChatGPT, Claude, Gemini, Grok, and Codex to inspect AI Workstation Setup by Zachary Banks / Banks Inc.",
+    "Copy one prompt, open ChatGPT, Claude, Gemini, Grok, Perplexity, or Copilot, and inspect AI Workstation Setup through an AI chat tool.",
   authors: [{ name: "Zachary Banks" }],
   creator: "Zachary Banks",
   publisher: "Banks Inc.",
