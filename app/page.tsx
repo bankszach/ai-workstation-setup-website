@@ -43,6 +43,7 @@ export default function Home() {
               configure AI tools, create repeatable workflows, train the first
               user, and maintain a simple support log.
             </p>
+            <p className="identityLine">{providerProfile.publicIdentitySummary}</p>
             <a className="primary" href="/provider">
               View provider profile
             </a>
@@ -85,6 +86,7 @@ export default function Home() {
           </p>
           <div className="verticalList">
             <a href="/api/service-brief">/api/service-brief</a>
+            <a href="/api/provider-profile">/api/provider-profile</a>
             <a href="/llms.txt">/llms.txt</a>
             <a href="/api/setup-manifest">/api/setup-manifest</a>
             <a href="/api/recipes">/api/recipes</a>

@@ -5,7 +5,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "AI Workstation Setup",
   description:
-    "Practical AI workstation setup for small businesses: approved documents, one workflow, training, and support logs.",
+    "AI Workstation Setup by Zachary Banks / Banks Inc. in San Diego: practical AI workstation setup for small businesses.",
+  authors: [{ name: "Zachary Banks" }],
+  creator: "Zachary Banks",
+  publisher: "Banks Inc.",
   icons: {
     icon: "/favicon.svg",
   },

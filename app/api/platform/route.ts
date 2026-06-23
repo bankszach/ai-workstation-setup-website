@@ -1,5 +1,5 @@
 import { getBlobStatus } from "../../../lib/platform/blob";
-import { dataServiceModel } from "../../../lib/platform/data";
+import { dataServiceModel, providerProfile } from "../../../lib/platform/data";
 import { getDatabaseStatus } from "../../../lib/platform/db";
 import { jsonResponse } from "../../../lib/platform/http";
 
@@ -9,6 +9,7 @@ export function GET() {
   return jsonResponse(
     {
       platform: "agent-workstation-knowledge-surface",
+      operator: providerProfile,
       logicSurface: dataServiceModel.logicSurface,
       primaryDatabase: dataServiceModel.primaryDatabase,
       objectStorage: dataServiceModel.objectStorage,

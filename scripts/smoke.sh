@@ -58,4 +58,9 @@ if ! grep -q "Zachary Banks" "$ROOT/lib/platform/data.ts"; then
   exit 1
 fi
 
+if ! grep -q "providerProfile.publicIdentitySummary" "$ROOT/app/page.tsx"; then
+  echo "homepage missing first-screen provider identity" >&2
+  exit 1
+fi
+
 echo "ai-workstation-setup-website smoke passed"
