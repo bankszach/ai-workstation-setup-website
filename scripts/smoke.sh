@@ -16,7 +16,6 @@ required=(
   "app/api/platform/route.ts"
   "app/api/provider-profile/route.ts"
   "app/api/buyer-faq/route.ts"
-  "app/api/visual-assets/route.ts"
   "app/api/setup-manifest/route.ts"
   "app/api/service-brief/route.ts"
   "app/api/recipes/route.ts"
@@ -26,10 +25,6 @@ required=(
   "lib/platform/data.ts"
   "lib/platform/db.ts"
   "lib/platform/blob.ts"
-  "public/agent-assets/ai-workstation-chat-card.svg"
-  "public/agent-assets/ai-workstation-chat-card.png"
-  "public/agent-assets/ai-workstation-packet-map.svg"
-  "public/agent-assets/ai-workstation-packet-map.png"
   "docs/vercel-import.md"
 )
 
@@ -70,8 +65,13 @@ if ! grep -q "providerProfile.publicIdentitySummary" "$ROOT/app/page.tsx"; then
   exit 1
 fi
 
-if ! grep -q "Copy the prompt. Open your AI." "$ROOT/app/page.tsx"; then
-  echo "homepage missing AI-first positioning" >&2
+if ! grep -q "Agent-readable service surface" "$ROOT/app/page.tsx"; then
+  echo "homepage missing agent-readable service positioning" >&2
+  exit 1
+fi
+
+if ! grep -q "route directory" "$ROOT/app/page.tsx"; then
+  echo "homepage missing text-first route directory language" >&2
   exit 1
 fi
 
@@ -100,18 +100,18 @@ if ! grep -q "not a physical computer build" "$ROOT/app/brief/page.tsx"; then
   exit 1
 fi
 
-if ! grep -q "ai-workstation-chat-card.png" "$ROOT/app/brief/page.tsx"; then
-  echo "brief page missing service preview image" >&2
+if grep -R -E "agent-assets|visual-assets|visualAssets|ai-workstation-chat-card|ai-workstation-packet-map" "$ROOT/app" "$ROOT/lib" "$ROOT/components"; then
+  echo "public app surface still references removed visual asset experiment" >&2
   exit 1
 fi
 
-if ! grep -q "ai-workstation-packet-map.png" "$ROOT/app/brief/page.tsx"; then
-  echo "brief page missing packet map image" >&2
+if find "$ROOT/public" -path "$ROOT/public/agent-assets" -print | grep -q .; then
+  echo "generated agent asset directory should not exist in text-first packet surface" >&2
   exit 1
 fi
 
-if ! grep -q "visualAssets" "$ROOT/lib/platform/data.ts"; then
-  echo "platform data missing visual asset packet" >&2
+if grep -R -E "<img|openGraph:.*images|summary_large_image" "$ROOT/app" "$ROOT/components"; then
+  echo "public app surface should not steer agents into image-loading behavior" >&2
   exit 1
 fi
 

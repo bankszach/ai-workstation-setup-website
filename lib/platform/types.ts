@@ -63,15 +63,6 @@ export type BuyerFaq = {
   answer: string;
 };
 
-export type VisualAsset = {
-  id: string;
-  label: string;
-  imageUrl: string;
-  format: "png";
-  alt: string;
-  caption: string;
-};
-
 export type ServiceBrief = {
   name: string;
   oneLine: string;

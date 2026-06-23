@@ -66,12 +66,48 @@ const platforms: ChatPlatform[] = [
 ];
 
 const packetRoutes = [
-  serviceBrief.urls.brief,
-  serviceBrief.urls.serviceBrief,
-  serviceBrief.urls.providerProfile,
-  serviceBrief.urls.buyerFaq,
-  serviceBrief.urls.setupManifest,
-  serviceBrief.urls.llms,
+  {
+    href: serviceBrief.urls.brief,
+    path: "/brief",
+    label: "/brief",
+    role: "Start here",
+    description: "Plain-language buyer and agent brief.",
+  },
+  {
+    href: serviceBrief.urls.serviceBrief,
+    path: "/api/service-brief",
+    label: "/api/service-brief",
+    role: "Service summary",
+    description: "Concise JSON description of the offer, audience, fit, and limitations.",
+  },
+  {
+    href: serviceBrief.urls.providerProfile,
+    path: "/api/provider-profile",
+    label: "/api/provider-profile",
+    role: "Operator identity",
+    description: "Zachary Banks, Banks Inc., San Diego, California.",
+  },
+  {
+    href: serviceBrief.urls.buyerFaq,
+    path: "/api/buyer-faq",
+    label: "/api/buyer-faq",
+    role: "Buyer questions",
+    description: "Trust, pricing, contact, scope, proof, and readiness questions.",
+  },
+  {
+    href: serviceBrief.urls.setupManifest,
+    path: "/api/setup-manifest",
+    label: "/api/setup-manifest",
+    role: "Setup contract",
+    description: "Current starter boundary and machine-readable entry points.",
+  },
+  {
+    href: serviceBrief.urls.llms,
+    path: "/llms.txt",
+    label: "/llms.txt",
+    role: "LLM text index",
+    description: "Compact text packet for chat tools and crawlers.",
+  },
 ];
 
 const serviceSchema = {
@@ -97,7 +133,6 @@ const serviceSchema = {
         "@id": `${serviceBrief.urls.homepage}/#organization`,
       },
       areaServed: "United States",
-      image: `${serviceBrief.urls.homepage}/agent-assets/ai-workstation-chat-card.png`,
       description:
         "A practical AI workflow installation service for small businesses: one user, one approved document set, one workflow, one training session, and one usage/support log. This is not a physical computer build, GPU workstation sales, local AI server build, or hardware sourcing service.",
       audience: {
@@ -118,14 +153,13 @@ export default function Home() {
       <section className="launcherHero">
         <div className="wrap launcherShell">
           <div className="launcherIntro">
-            <p className="systemLabel">AI-first launch surface</p>
-            <h1>Copy the prompt. Open your AI.</h1>
+            <p className="systemLabel">Agent-readable service surface</p>
+            <h1>Understand the service fast.</h1>
             <p className="launcherText">
-              This website is designed to be consumed through a chat tool first.
-              Copy the prompt, choose ChatGPT, Claude, Gemini, Grok, Perplexity,
-              or Copilot, then let the model inspect the public packet routes.
-              The service installs one controlled AI workflow; it does not sell
-              or build physical AI workstations.
+              AI Workstation Setup is built so a person or AI agent can quickly
+              verify the offer, operator, scope, exclusions, and buyer questions
+              from public text routes. The service installs one controlled AI
+              workflow; it does not sell or build physical AI workstations.
             </p>
             <div className="identityPanel">
               <strong>{providerProfile.operatingCompany}</strong>
@@ -133,44 +167,60 @@ export default function Home() {
             </div>
           </div>
 
-          <CopySurface platforms={platforms} prompt={launchPrompt} />
-        </div>
-      </section>
-
-      <section className="launcherSteps" aria-label="How to use this site">
-        <div className="wrap stepGrid">
-          <div>
-            <span>01</span>
-            <h2>Copy</h2>
-            <p>Use the prompt deck above. It already includes the main site and packet routes.</p>
-          </div>
-          <div>
-            <span>02</span>
-            <h2>Open</h2>
-            <p>Pick the AI chat tool you already use. Platform links open in a new tab.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <h2>Paste</h2>
-            <p>Ask the model to inspect the service, summarize it, and challenge the buying case.</p>
+          <div className="trustPanel" aria-label="Fast trust signals">
+            <h2>Fast read order</h2>
+            <ol>
+              <li>
+                <strong>Read the brief.</strong>
+                <span>Human-readable explanation of what the service is and is not.</span>
+              </li>
+              <li>
+                <strong>Check the provider profile.</strong>
+                <span>Operator identity, company name, and public location.</span>
+              </li>
+              <li>
+                <strong>Inspect the setup manifest.</strong>
+                <span>Starter boundary, exclusions, and public packet routes.</span>
+              </li>
+            </ol>
           </div>
         </div>
       </section>
 
-      <section className="routeStrip" aria-label="Public agent packet routes">
+      <section className="agentDirectory" aria-label="Public agent route directory">
         <div className="wrap">
-          <h2>Agent packet routes</h2>
-          <div className="routeList">
+          <div className="sectionHeader">
+            <p className="systemLabel light">Public packet</p>
+            <h2>Text routes for agents and buyers</h2>
+            <p>
+              These routes are the primary navigation. They are plain HTML, JSON,
+              and text surfaces designed for fast reading, citation, and verification.
+            </p>
+          </div>
+          <div className="routeCardGrid">
             {packetRoutes.map((route) => (
-              <a href={route} key={route}>
-                {route.replace(serviceBrief.urls.homepage, "") || "/"}
+              <a className="routeCard" href={route.path} key={route.href}>
+                <span>{route.role}</span>
+                <strong>{route.label}</strong>
+                <p>{route.description}</p>
               </a>
             ))}
           </div>
-          <p>
-            Independent launch links only. Pick the chat tool you already use, paste the prompt,
-            and let it inspect the public packet routes.
-          </p>
+        </div>
+      </section>
+
+      <section className="handoffSection" aria-label="Optional chat handoff prompt">
+        <div className="wrap handoffGrid">
+          <div>
+            <p className="systemLabel light">Optional handoff</p>
+            <h2>Paste this into a chat tool when you want a second read.</h2>
+            <p>
+              The prompt is not the site structure. It is a shortcut for sending
+              ChatGPT, Claude, Gemini, Grok, Perplexity, or Copilot through the
+              same public text packet.
+            </p>
+          </div>
+          <CopySurface platforms={platforms} prompt={launchPrompt} />
         </div>
       </section>
     </main>

@@ -17,21 +17,12 @@ export const metadata: Metadata = {
     title: "AI Workstation Setup",
     description:
       "AI workflow installation for one controlled small-business workflow. Not a physical computer or GPU workstation build service.",
-    images: [
-      {
-        url: "/agent-assets/ai-workstation-chat-card.png",
-        width: 1200,
-        height: 630,
-        alt: "AI Workstation Setup card that says Copy the prompt. Open your AI.",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "AI Workstation Setup",
     description:
       "AI workflow installation for one controlled small-business workflow. Not a physical computer or GPU workstation build service.",
-    images: ["/agent-assets/ai-workstation-chat-card.png"],
   },
 };
 

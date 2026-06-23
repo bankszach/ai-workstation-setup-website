@@ -6,7 +6,6 @@ import type {
   RecipePacket,
   SetupManifest,
   TemplateManifest,
-  VisualAsset,
 } from "./types";
 
 export const serviceVersion = "2026.06.22-public-preview";
@@ -39,10 +38,6 @@ export const dataServiceModel: DataServiceModel = {
 };
 
 export const publicBaseUrl = "https://ai-workstation-setup-website.vercel.app";
-
-function publicAsset(path: string) {
-  return `${publicBaseUrl}${path}`;
-}
 
 export const contactProfile = {
   status: "provider-identified" as const,
@@ -204,27 +199,6 @@ export const templateManifests: TemplateManifest[] = [
     purpose: "Records usage, issues, follow-up, and handoff support activity.",
     path: "docs/04-client-templates/support-log-template.csv",
     packetRole: "event-log",
-  },
-];
-
-export const visualAssets: VisualAsset[] = [
-  {
-    id: "service-chat-launch-card",
-    label: "AI Workstation Setup chat launch card",
-    imageUrl: publicAsset("/agent-assets/ai-workstation-chat-card.png"),
-    format: "png",
-    alt: "AI Workstation Setup card that says Copy the prompt. Open your AI.",
-    caption:
-      "The service is meant to be evaluated through an AI chat tool using the public packet routes.",
-  },
-  {
-    id: "agent-packet-route-map",
-    label: "Agent packet route map",
-    imageUrl: publicAsset("/agent-assets/ai-workstation-packet-map.png"),
-    format: "png",
-    alt: "Route map showing the public agent-readable endpoints for AI Workstation Setup.",
-    caption:
-      "The public routes give AI tools a structured way to inspect the offer, operator profile, FAQ, setup manifest, recipes, and templates.",
   },
 ];
 
