@@ -2,7 +2,6 @@ import type {
   DataServiceModel,
   BuyerFaq,
   ProviderProfile,
-  PlatformLaunchAsset,
   ServiceBrief,
   RecipePacket,
   SetupManifest,
@@ -208,106 +207,25 @@ export const templateManifests: TemplateManifest[] = [
   },
 ];
 
-export const platformLaunchAssets: PlatformLaunchAsset[] = [
-  {
-    name: "ChatGPT",
-    href: "https://chatgpt.com/",
-    badgeUrl: publicAsset("/platform-assets/chatgpt-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening ChatGPT",
-    sourceUrl: "https://openai.com/brand/",
-    sourceLabel: "OpenAI Design Guidelines",
-    brandUseNote:
-      "OpenAI owns the OpenAI, ChatGPT, and GPT marks. This site uses a local launch badge and text reference only; no affiliation or endorsement is implied.",
-  },
-  {
-    name: "Claude",
-    href: "https://claude.ai/",
-    badgeUrl: publicAsset("/platform-assets/claude-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening Claude",
-    sourceUrl: "https://claude.ai/",
-    sourceLabel: "Claude public product site",
-    brandUseNote:
-      "Claude is referenced only as an independent destination where a user may paste the service-inspection prompt.",
-  },
-  {
-    name: "Gemini",
-    href: "https://gemini.google.com/app",
-    badgeUrl: publicAsset("/platform-assets/gemini-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening Gemini",
-    sourceUrl: "https://partnermarketinghub.withgoogle.com/brands/google/overview/",
-    sourceLabel: "Google Partner Marketing Hub overview",
-    brandUseNote:
-      "Gemini and Google are referenced only as independent destinations where a user may paste the service-inspection prompt.",
-  },
-  {
-    name: "Grok",
-    href: "https://grok.com/",
-    badgeUrl: publicAsset("/platform-assets/grok-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening Grok",
-    sourceUrl: "https://x.ai/legal/brand-guidelines",
-    sourceLabel: "xAI Brand Guidelines",
-    brandUseNote:
-      "xAI owns the xAI and Grok marks. This site uses a local launch badge and text reference only; no affiliation or endorsement is implied.",
-  },
-  {
-    name: "Perplexity",
-    href: "https://www.perplexity.ai/",
-    badgeUrl: publicAsset("/platform-assets/perplexity-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening Perplexity",
-    sourceUrl: "https://live.standards.site/perplexity/logo",
-    sourceLabel: "Perplexity logo standards",
-    brandUseNote:
-      "Perplexity is referenced only as an independent destination where a user may paste the service-inspection prompt.",
-  },
-  {
-    name: "Copilot",
-    href: "https://copilot.microsoft.com/",
-    badgeUrl: publicAsset("/platform-assets/copilot-launch-badge.svg"),
-    badgeAlt: "Local launch badge for opening Copilot",
-    sourceUrl: "https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks",
-    sourceLabel: "Microsoft Trademark and Brand Guidelines",
-    brandUseNote:
-      "Microsoft Copilot is referenced only as an independent destination. This site uses a local launch badge rather than a Microsoft product icon.",
-  },
-];
-
 export const visualAssets: VisualAsset[] = [
   {
     id: "service-chat-launch-card",
     label: "AI Workstation Setup chat launch card",
-    type: "service-brand-card",
-    imageUrl: publicAsset("/agent-assets/ai-workstation-chat-card.svg"),
+    imageUrl: publicAsset("/agent-assets/ai-workstation-chat-card.png"),
+    format: "png",
     alt: "AI Workstation Setup card that says Copy the prompt. Open your AI.",
-    recommendedUse:
-      "Load this image when summarizing the service in a chat interface that supports rich previews or image display.",
-    markdown: `![AI Workstation Setup chat launch card](${publicAsset("/agent-assets/ai-workstation-chat-card.svg")})`,
-    source: "AI Workstation Setup owned service asset",
-    rightsNote: "Owned service branding for AI Workstation Setup / Banks Inc.",
+    caption:
+      "The service is meant to be evaluated through an AI chat tool using the public packet routes.",
   },
   {
     id: "agent-packet-route-map",
     label: "Agent packet route map",
-    type: "service-packet-map",
-    imageUrl: publicAsset("/agent-assets/ai-workstation-packet-map.svg"),
+    imageUrl: publicAsset("/agent-assets/ai-workstation-packet-map.png"),
+    format: "png",
     alt: "Route map showing the public agent-readable endpoints for AI Workstation Setup.",
-    recommendedUse:
-      "Load this image when explaining how an AI agent should inspect the website and its public packet routes.",
-    markdown: `![AI Workstation Setup packet map](${publicAsset("/agent-assets/ai-workstation-packet-map.svg")})`,
-    source: "AI Workstation Setup owned service asset",
-    rightsNote: "Owned service branding for AI Workstation Setup / Banks Inc.",
+    caption:
+      "The public routes give AI tools a structured way to inspect the offer, operator profile, FAQ, setup manifest, recipes, and templates.",
   },
-  ...platformLaunchAssets.map((platform): VisualAsset => ({
-    id: `${platform.name.toLowerCase().replaceAll(" ", "-")}-launch-badge`,
-    label: `${platform.name} launch badge`,
-    type: "platform-launch-badge",
-    imageUrl: platform.badgeUrl,
-    alt: platform.badgeAlt,
-    recommendedUse:
-      "Use as a navigation aid on the AI Workstation Setup launch surface; do not treat it as a partnership, endorsement, or official vendor asset.",
-    markdown: `![${platform.badgeAlt}](${platform.badgeUrl})`,
-    source: platform.sourceLabel,
-    rightsNote: platform.brandUseNote,
-  })),
 ];
 
 export const setupManifest: SetupManifest = {
@@ -328,7 +246,6 @@ export const setupManifest: SetupManifest = {
     "/api/service-brief",
     "/api/provider-profile",
     "/api/buyer-faq",
-    "/api/visual-assets",
     "/llms.txt",
   ],
   serviceBoundary: {
@@ -451,7 +368,6 @@ export const serviceBrief: ServiceBrief = {
     serviceBrief: `${publicBaseUrl}/api/service-brief`,
     providerProfile: `${publicBaseUrl}/api/provider-profile`,
     buyerFaq: `${publicBaseUrl}/api/buyer-faq`,
-    visualAssets: `${publicBaseUrl}/api/visual-assets`,
     llms: `${publicBaseUrl}/llms.txt`,
   },
 };

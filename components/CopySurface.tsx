@@ -1,14 +1,12 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export type ChatPlatform = {
   name: string;
   href: string;
-  imageSrc: string;
-  imageAlt: string;
+  mark: string;
   accent: string;
   instruction: string;
 };
@@ -76,14 +74,8 @@ export function CopySurface({ prompt, platforms }: CopySurfaceProps) {
             style={{ "--platform-accent": platform.accent } as CSSProperties}
             target="_blank"
           >
-            <span className="platformMark">
-              <Image
-                src={platform.imageSrc}
-                alt={platform.imageAlt}
-                width={46}
-                height={46}
-                unoptimized
-              />
+            <span className="platformMark" aria-hidden="true">
+              {platform.mark}
             </span>
             <span>
               <strong>{platform.name}</strong>

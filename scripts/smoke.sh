@@ -26,13 +26,9 @@ required=(
   "lib/platform/db.ts"
   "lib/platform/blob.ts"
   "public/agent-assets/ai-workstation-chat-card.svg"
+  "public/agent-assets/ai-workstation-chat-card.png"
   "public/agent-assets/ai-workstation-packet-map.svg"
-  "public/platform-assets/chatgpt-launch-badge.svg"
-  "public/platform-assets/claude-launch-badge.svg"
-  "public/platform-assets/gemini-launch-badge.svg"
-  "public/platform-assets/grok-launch-badge.svg"
-  "public/platform-assets/perplexity-launch-badge.svg"
-  "public/platform-assets/copilot-launch-badge.svg"
+  "public/agent-assets/ai-workstation-packet-map.png"
   "docs/vercel-import.md"
 )
 
@@ -98,8 +94,18 @@ if ! grep -q "visualAssets" "$ROOT/lib/platform/data.ts"; then
   exit 1
 fi
 
-if ! grep -q "get_visual_assets" "$ROOT/app/api/mcp/route.ts"; then
-  echo "mcp route missing visual asset discovery" >&2
+if grep -R -E "Brand-source|rightsNote|brandUseNote|platformLaunchAssets|not official vendor logos" "$ROOT/app" "$ROOT/lib" "$ROOT/components"; then
+  echo "public surface contains noisy brand/legal visual asset language" >&2
+  exit 1
+fi
+
+if grep -q "/api/visual-assets" "$ROOT/app/api/mcp/route.ts"; then
+  echo "mcp route should not steer agents into image-loading detours" >&2
+  exit 1
+fi
+
+if grep -q "/api/visual-assets" "$ROOT/app/page.tsx"; then
+  echo "homepage prompt should not steer agents into image-loading detours" >&2
   exit 1
 fi
 

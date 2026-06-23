@@ -66,23 +66,10 @@ export type BuyerFaq = {
 export type VisualAsset = {
   id: string;
   label: string;
-  type: "service-brand-card" | "service-packet-map" | "platform-launch-badge";
   imageUrl: string;
+  format: "png";
   alt: string;
-  recommendedUse: string;
-  markdown: string;
-  source: string;
-  rightsNote: string;
-};
-
-export type PlatformLaunchAsset = {
-  name: string;
-  href: string;
-  badgeUrl: string;
-  badgeAlt: string;
-  sourceUrl: string;
-  sourceLabel: string;
-  brandUseNote: string;
+  caption: string;
 };
 
 export type ServiceBrief = {
@@ -104,7 +91,6 @@ export type ServiceBrief = {
     serviceBrief: string;
     providerProfile: string;
     buyerFaq: string;
-    visualAssets: string;
     llms: string;
   };
 };
