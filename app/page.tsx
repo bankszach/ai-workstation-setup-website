@@ -1,3 +1,4 @@
+import { CopySurface } from "../components/CopySurface";
 import { OfferCard } from "../components/OfferCard";
 import { Section } from "../components/Section";
 import { providerProfile, serviceBrief } from "../lib/platform/data";
@@ -31,36 +32,85 @@ const verticals = [
   "property management companies",
 ];
 
+const aiReviewPrompt = `Please review this AI-first service website and tell me what you understand the company offers, who operates it, where it is based, who it is for, what problem it solves, and whether it seems useful for a small business owner.
+
+${serviceBrief.urls.homepage}`;
+
+const shortShareMessage = `Open this AI-first service website and inspect the public packet routes if useful:
+
+${serviceBrief.urls.homepage}`;
+
+const agentPacket = [
+  serviceBrief.urls.homepage,
+  serviceBrief.urls.serviceBrief,
+  serviceBrief.urls.providerProfile,
+  serviceBrief.urls.buyerFaq,
+  serviceBrief.urls.setupManifest,
+  serviceBrief.urls.llms,
+].join("\n");
+
+const copyItems = [
+  {
+    label: "Review prompt",
+    helper: "Best default message for ChatGPT, Claude, Gemini, or Grok.",
+    value: aiReviewPrompt,
+  },
+  {
+    label: "Short link message",
+    helper: "Use when you only need to send the site into a chat window.",
+    value: shortShareMessage,
+  },
+  {
+    label: "Agent packet links",
+    helper: "Use when an AI tool should inspect the machine-readable routes.",
+    value: agentPacket,
+  },
+];
+
 export default function Home() {
   return (
     <main>
       <section className="hero">
         <div className="wrap heroGrid">
           <div>
-            <h1>Set up your first practical AI workstation.</h1>
+            <p className="eyebrow">AI-first website for LLM chat tools</p>
+            <h1>Paste this site into your AI chat.</h1>
             <p className="heroText">
-              AI Workstation Setup helps small businesses organize documents,
-              configure AI tools, create repeatable workflows, train the first
-              user, and maintain a simple support log.
+              This surface is designed to be consumed by ChatGPT, Claude,
+              Gemini, Grok, Codex, and other AI agents. Copy a prompt, drop it
+              into a chat window, and let the model inspect the public service
+              packets.
             </p>
             <p className="identityLine">{providerProfile.publicIdentitySummary}</p>
-            <a className="primary" href="/provider">
-              View provider profile
+            <a className="primary" href="#copy-for-ai">
+              Copy an AI prompt
             </a>
             <a className="secondaryLink" href="/codex">
               Open Codex setup surface
             </a>
           </div>
-          <div className="workspacePanel" aria-label="Starter setup summary">
-            <div className="panelTop">
-              <span>Starter Boundary</span>
-              <strong>one user</strong>
+          <CopySurface items={copyItems} />
+        </div>
+      </section>
+
+      <section className="section copyBand" id="copy-for-ai">
+        <div className="wrap">
+          <h2>Send the website to an AI agent first</h2>
+          <div className="copyWorkflow">
+            <div>
+              <span>1</span>
+              <h3>Copy a message</h3>
+              <p>Use the review prompt, short link message, or packet route list.</p>
             </div>
-            <div className="stack">
-              <span>approved documents</span>
-              <span>one workflow</span>
-              <span>training session</span>
-              <span>usage and support log</span>
+            <div>
+              <span>2</span>
+              <h3>Paste into chat</h3>
+              <p>Drop it into ChatGPT, Claude, Gemini, Grok, or another LLM tool.</p>
+            </div>
+            <div>
+              <span>3</span>
+              <h3>Let the model inspect</h3>
+              <p>The site exposes pages, JSON routes, and llms.txt for agent reading.</p>
             </div>
           </div>
         </div>
@@ -68,9 +118,9 @@ export default function Home() {
 
       <Section title="What it is">
         <div className="plainGrid">
+          <OfferCard title="AI-first website" body="The primary user path is to copy this site into an AI chat tool and let the model inspect the public service packet." />
           <OfferCard title="Not a chatbot" body="The service builds the working layer around AI tools: folders, approved documents, recipes, verification, and logs." />
           <OfferCard title="Not a transformation program" body="The starter is deliberately small, built for one user and one workflow before any wider rollout." />
-          <OfferCard title="A controlled setup" body="The first workstation starts with approved documents only and keeps sensitive integrations out of scope." />
         </div>
       </Section>
 

@@ -10,6 +10,7 @@ required=(
   "app/codex/recipes/page.tsx"
   "app/codex/templates/page.tsx"
   "app/provider/page.tsx"
+  "components/CopySurface.tsx"
   "app/api/health/route.ts"
   "app/api/platform/route.ts"
   "app/api/provider-profile/route.ts"
@@ -60,6 +61,16 @@ fi
 
 if ! grep -q "providerProfile.publicIdentitySummary" "$ROOT/app/page.tsx"; then
   echo "homepage missing first-screen provider identity" >&2
+  exit 1
+fi
+
+if ! grep -q "AI-first website for LLM chat tools" "$ROOT/app/page.tsx"; then
+  echo "homepage missing AI-first positioning" >&2
+  exit 1
+fi
+
+if ! grep -q "navigator.clipboard.writeText" "$ROOT/components/CopySurface.tsx"; then
+  echo "copy surface missing clipboard behavior" >&2
   exit 1
 fi
 
